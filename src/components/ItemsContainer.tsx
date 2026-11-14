@@ -3,14 +3,22 @@ import ItemCard from "./ItemCard";
 
 export interface ItemsContainerProps {
   items: ClothingProduct[];
+  handleAddToCheckout: (id: number, quantity: number) => void;
 }
 
-export default function ItemsContainer({ items }: ItemsContainerProps) {
+export default function ItemsContainer({
+  items,
+  handleAddToCheckout,
+}: ItemsContainerProps) {
   return (
     <div>
       <h2>Available Products</h2>
       {items.map((item) => (
-        <ItemCard key={item.id} item={item} />
+        <ItemCard
+          key={item.id}
+          item={item}
+          handleAddToCheckout={handleAddToCheckout}
+        />
       ))}
     </div>
   );
