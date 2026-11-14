@@ -2,9 +2,13 @@ import type { ClothingProduct } from "../data/data";
 
 export interface CheckoutCardProps {
   item: ClothingProduct;
+  handleRemoveFromCheckout: (id: number) => void;
 }
 
-export default function CheckoutCard({ item }: CheckoutCardProps) {
+export default function CheckoutCard({
+  item,
+  handleRemoveFromCheckout,
+}: CheckoutCardProps) {
   return (
     <>
       <h3>{item.name}</h3>
@@ -13,6 +17,8 @@ export default function CheckoutCard({ item }: CheckoutCardProps) {
         Price: ${item.price.toFixed(2)} - In Cart: {item.itemQuantity}
       </p>
       <p>Subtotal: ${(item.price * item.itemQuantity).toFixed(2)}</p>
+      <button onClick={() => handleRemoveFromCheckout(item.id)}>Remove</button>
+      <br />
     </>
   );
 }

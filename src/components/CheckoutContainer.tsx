@@ -3,10 +3,12 @@ import CheckoutCard from "./CheckoutCard";
 
 export interface CheckoutContainerProps {
   checkout: ClothingProduct[];
+  handleRemoveFromCheckout: (id: number) => void;
 }
 
 export default function CheckoutContainer({
   checkout,
+  handleRemoveFromCheckout,
 }: CheckoutContainerProps) {
   const checkoutTotal = checkout.reduce(
     (total, item) => total + item.price * item.itemQuantity,
@@ -18,7 +20,13 @@ export default function CheckoutContainer({
       {checkout.length === 0 ? (
         <p>Cart Empty</p>
       ) : (
-        checkout.map((item) => <CheckoutCard key={item.id} item={item} />)
+        checkout.map((item) => (
+          <CheckoutCard
+            key={item.id}
+            item={item}
+            handleRemoveFromCheckout={handleRemoveFromCheckout}
+          />
+        ))
       )}
       <br />
       {checkout.length > 0 && (

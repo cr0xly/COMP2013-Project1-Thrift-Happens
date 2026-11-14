@@ -50,11 +50,33 @@ export default function ThriftHappens() {
     );
   };
 
+  const handleRemoveFromCheckout = (id: number) => {
+    const removedItem = checkout.find((item) => item.id === id);
+    if (removedItem === undefined) {
+      return;
+    }
+    setCheckout((prev) => prev.filter((item) => item.id !== id));
+    setItems((prev) =>
+      prev.map((item) => {
+        if (item.id === id) {
+          return {
+            ...item,
+            quantity: item.quantity + removedItem.itemQuantity,
+          };
+        }
+        return item;
+      }),
+    );
+  };
+
   return (
     <div>
       <h1>Thrift Happens</h1>
       <ItemsContainer items={items} handleAddToCheckout={handleAddToCheckout} />
-      <CheckoutContainer checkout={checkout} />
+      <CheckoutContainer
+        checkout={checkout}
+        handleRemoveFromCheckout={handleRemoveFromCheckout}
+      />
     </div>
   );
 }
