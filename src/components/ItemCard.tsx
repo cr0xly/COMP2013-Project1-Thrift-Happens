@@ -21,6 +21,11 @@ export default function ItemCard({ item, handleAddToCheckout }: ItemCardProps) {
     }
   };
 
+  const handleAddButtonClick = () => {
+    handleAddToCheckout(item.id, selectedQuantity);
+    setSelectedQuantity(0);
+  };
+
   return (
     <div>
       <p>
@@ -50,10 +55,7 @@ export default function ItemCard({ item, handleAddToCheckout }: ItemCardProps) {
           +
         </button>
       </p>
-      <button
-        onClick={() => handleAddToCheckout(item.id, selectedQuantity)}
-        disabled={selectedQuantity === 0}
-      >
+      <button onClick={handleAddButtonClick} disabled={selectedQuantity === 0}>
         Add to Checkout
       </button>
       <br />

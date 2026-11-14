@@ -12,6 +12,9 @@ export default function ThriftHappens() {
     if (selectedItem === undefined) {
       return;
     }
+    if (quantity <= 0 || quantity > selectedItem.quantity) {
+      return;
+    }
     const checkoutItem: ClothingProduct = {
       ...selectedItem,
       itemQuantity: quantity,
@@ -32,6 +35,18 @@ export default function ThriftHappens() {
     } else {
       setCheckout((prev) => [...prev, checkoutItem]);
     }
+
+    setItems((prev) =>
+      prev.map((item) => {
+        if (item.id === id) {
+          return {
+            ...item,
+            quantity: item.quantity - quantity,
+          };
+        }
+        return item;
+      }),
+    );
   };
   console.log(checkout);
 
