@@ -69,6 +69,26 @@ export default function ThriftHappens() {
     );
   };
 
+  const handleEmptyCheckout = () => {
+    setItems((prev) =>
+      prev.map((item) => {
+        const checkoutItem = checkout.find(
+          (cartItem) => cartItem.id === item.id,
+        );
+
+        if (checkoutItem === undefined) {
+          return item;
+        }
+        return {
+          ...item,
+          quantity: item.quantity + checkoutItem.itemQuantity,
+        };
+      }),
+    );
+
+    setCheckout([]);
+  };
+
   return (
     <div>
       <h1>Thrift Happens</h1>
@@ -76,6 +96,7 @@ export default function ThriftHappens() {
       <CheckoutContainer
         checkout={checkout}
         handleRemoveFromCheckout={handleRemoveFromCheckout}
+        handleEmptyCheckout={handleEmptyCheckout}
       />
     </div>
   );
