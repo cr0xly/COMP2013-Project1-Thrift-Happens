@@ -5,6 +5,7 @@ export interface CheckoutCardProps {
   handleRemoveFromCheckout: (id: number) => void;
 }
 
+// Display a checkout product with its quantity, subtotal and remove button
 export default function CheckoutCard({
   item,
   handleRemoveFromCheckout,

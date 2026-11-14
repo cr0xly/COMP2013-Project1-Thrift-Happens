@@ -6,6 +6,7 @@ export interface ItemsContainerProps {
   handleAddToCheckout: (id: number, quantity: number) => void;
 }
 
+// Display each available product using an ItemCard component
 export default function ItemsContainer({
   items,
   handleAddToCheckout,

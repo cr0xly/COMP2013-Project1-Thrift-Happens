@@ -12,6 +12,7 @@ export default function CheckoutContainer({
   handleRemoveFromCheckout,
   handleEmptyCheckout,
 }: CheckoutContainerProps) {
+  // Calculate the total cost of all products currently in checkout
   const checkoutTotal = checkout.reduce(
     (total, item) => total + item.price * item.itemQuantity,
     0,
@@ -19,6 +20,7 @@ export default function CheckoutContainer({
   return (
     <div>
       <h2>Checkout</h2>
+      {/* Display the checkout products or an empty cart message */}
       {checkout.length === 0 ? (
         <p>Cart Empty</p>
       ) : (
@@ -31,11 +33,13 @@ export default function CheckoutContainer({
         ))
       )}
       <br />
+      {/* Only display the total when checkout contains products */}
       {checkout.length > 0 && (
         <p>
           <b>Total: ${checkoutTotal.toFixed(2)}</b>
         </p>
       )}
+      {/* Only show the empty cart button when there are products to remove */}
       {checkout.length > 0 && (
         <button onClick={handleEmptyCheckout}>Empty Cart</button>
       )}

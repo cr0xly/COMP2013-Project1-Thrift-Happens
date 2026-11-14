@@ -7,20 +7,24 @@ export interface ItemCardProps {
 }
 
 export default function ItemCard({ item, handleAddToCheckout }: ItemCardProps) {
+  // Track how many of this product the user wants to add
   const [selectedQuantity, setSelectedQuantity] = useState<number>(0);
 
+  // Increase the selected quantity without going over available stock
   const handleIncreaseQuantity = () => {
     if (selectedQuantity < item.quantity) {
       setSelectedQuantity(selectedQuantity + 1);
     }
   };
 
+  // Decrease the selected quantity without going below zero
   const handleDecreaseQuantity = () => {
     if (selectedQuantity > 0) {
       setSelectedQuantity(selectedQuantity - 1);
     }
   };
 
+  // Add the selected amount to checkout and reset the counter
   const handleAddButtonClick = () => {
     handleAddToCheckout(item.id, selectedQuantity);
     setSelectedQuantity(0);
