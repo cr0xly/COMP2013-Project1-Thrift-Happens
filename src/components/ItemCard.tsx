@@ -31,12 +31,12 @@ export default function ItemCard({ item, handleAddToCheckout }: ItemCardProps) {
   };
 
   return (
-    <div>
+    <div className="item-card">
       <p>
         <b>{item.name}</b>
       </p>
-      <img src={item.image} alt={item.description} width={400} />
-      <p> Size: {item.size}</p>
+      <img src={item.image} alt={item.description} />
+      <p>Size: {item.size}</p>
       <p>
         {item.color} {item.category} for {item.fit}
       </p>
@@ -62,8 +62,6 @@ export default function ItemCard({ item, handleAddToCheckout }: ItemCardProps) {
       <button onClick={handleAddButtonClick} disabled={selectedQuantity === 0}>
         Add to Checkout
       </button>
-      <br />
-      <br />
     </div>
   );
 }

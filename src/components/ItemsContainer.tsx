@@ -14,13 +14,15 @@ export default function ItemsContainer({
   return (
     <div>
       <h2>Available Products</h2>
-      {items.map((item) => (
-        <ItemCard
-          key={item.id}
-          item={item}
-          handleAddToCheckout={handleAddToCheckout}
-        />
-      ))}
+      <div className="items-grid">
+        {items.map((item) => (
+          <ItemCard
+            key={item.id}
+            item={item}
+            handleAddToCheckout={handleAddToCheckout}
+          />
+        ))}
+      </div>
     </div>
   );
 }

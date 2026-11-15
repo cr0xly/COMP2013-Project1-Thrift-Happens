@@ -3,6 +3,7 @@ import { products } from "../data/data";
 import type { ClothingProduct } from "../data/data";
 import ItemsContainer from "./ItemsContainer";
 import CheckoutContainer from "./CheckoutContainer";
+import NavBar from "./NavBar";
 
 export default function ThriftHappens() {
   // Store the available products and the items currently in checkout
@@ -106,13 +107,18 @@ export default function ThriftHappens() {
 
   return (
     <div>
-      <h1>Thrift Happens</h1>
-      <ItemsContainer items={items} handleAddToCheckout={handleAddToCheckout} />
-      <CheckoutContainer
-        checkout={checkout}
-        handleRemoveFromCheckout={handleRemoveFromCheckout}
-        handleEmptyCheckout={handleEmptyCheckout}
-      />
+      <NavBar />
+      <div className="store-layout">
+        <ItemsContainer
+          items={items}
+          handleAddToCheckout={handleAddToCheckout}
+        />
+        <CheckoutContainer
+          checkout={checkout}
+          handleRemoveFromCheckout={handleRemoveFromCheckout}
+          handleEmptyCheckout={handleEmptyCheckout}
+        />
+      </div>
     </div>
   );
 }

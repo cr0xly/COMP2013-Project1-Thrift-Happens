@@ -11,15 +11,14 @@ export default function CheckoutCard({
   handleRemoveFromCheckout,
 }: CheckoutCardProps) {
   return (
-    <>
+    <div className="checkout-card">
       <h3>{item.name}</h3>
-      <img src={item.image} alt={item.description} width="400" />
+      <img src={item.image} alt={item.description} />
       <p>
-        Price: ${item.price.toFixed(2)} - In Cart: {item.itemQuantity}
+        Price: ${item.price.toFixed(2)} <br /> In Cart: {item.itemQuantity}
       </p>
       <p>Subtotal: ${(item.price * item.itemQuantity).toFixed(2)}</p>
       <button onClick={() => handleRemoveFromCheckout(item.id)}>Remove</button>
-      <br />
-    </>
+    </div>
   );
 }
